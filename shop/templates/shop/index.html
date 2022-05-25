@@ -9,31 +9,29 @@
     <title>Django Shop</title>
 </head>
 <body>
-    <header id="home">
-        <nav>
-            <ul>
-                <li class="primary-nav">
-                    <img src="{% static 'img/wsei-logo.png' %}" alt="logo">
-					<a href="{% url 'home' %}">Django shop</a>
-                </li>
-                <li class="secondary-nav">
-					<a href="{% url 'login' %}">Zaloguj</a>
-                    <a>|</a>
-					<a href="{% url 'register' %}">Zarejestruj</a>
-                </li>
-                <li class="secondary-nav">
-					<a href="{% url 'cart' %}">Koszyk</a>
-                </li>
-                <li class="secondary-nav">
-					<a href="{% url 'products' %}">Produkty</a>
-                </li>
-            </ul>
-        </nav>
-    </header>
-	<section id="subpage">
-		{% block content %}
+    <nav>
+        <ul>
+            <li class="primary-nav">
+                <img src="{% static 'img/wsei-logo.png' %}" alt="logo">
+                <a href="{% url 'home' %}">Django shop</a>
+            </li>
+            <li class="secondary-nav">
+                <a href="{% url 'login' %}">Zaloguj</a>
+                <a>|</a>
+                <a href="{% url 'register' %}">Zarejestruj</a>
+            </li>
+            <li class="secondary-nav">
+                <a href="{% url 'cart' %}">Koszyk</a>
+            </li>
+            <li class="secondary-nav">
+                <a href="{% url 'products' %}">Produkty</a>
+            </li>
+        </ul>
+    </nav>
+    <main>
+        {% block content %}
 
-		{% endblock content %}
-	</section>
+        {% endblock content %}
+    </main>
 </body>
 </html>
