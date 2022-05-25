@@ -1,11 +1,11 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    {% load static %}
-    <link rel="stylesheet" href="../static/css/style.css">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <title>Django Shop</title>
 </head>
 <body>
@@ -14,21 +14,26 @@
             <ul>
                 <li class="primary-nav">
                     <img src="{% static 'img/wsei-logo.png' %}" alt="logo">
-                    <a href="">Django shop</a>
+					<a href="{% url 'home' %}">Django shop</a>
                 </li>
                 <li class="secondary-nav">
-                    <a href="login">Zaloguj</a>
+					<a href="{% url 'login' %}">Zaloguj</a>
                     <a>|</a>
-                    <a href="register">Zarejestruj</a>
+					<a href="{% url 'register' %}">Zarejestruj</a>
                 </li>
                 <li class="secondary-nav">
-                    <a href="cart">Koszyk</a>
+					<a href="{% url 'cart' %}">Koszyk</a>
                 </li>
                 <li class="secondary-nav">
-                    <a href="products">Produkty</a>
+					<a href="{% url 'products' %}">Produkty</a>
                 </li>
             </ul>
         </nav>
     </header>
+	<section id="subpage">
+		{% block content %}
+
+		{% endblock content %}
+	</section>
 </body>
 </html>
