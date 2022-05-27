@@ -29,3 +29,8 @@ def register(request):
 def single(request):
     context = {}
     return render(request, 'shop/single-id.html', context)
+
+
+def terms(request):
+    context = {}
+    return render(request, 'shop/terms.txt', context)

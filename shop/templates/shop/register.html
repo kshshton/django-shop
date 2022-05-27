@@ -4,5 +4,26 @@
     <link rel="stylesheet" href="{% static 'css/register.css' %}">
 {% endblock css %}
 {% block content %}
-	<h1>Register</h1>
+    <form class="register">
+        <div class="register-container">
+            <h1>Zarejestruj się</h1>
+            <hr>
+            <label for="email">Email</label>
+            <input type="text" placeholder="Podaj email" name="email" id="email" required>
+
+            <label for="password">Hasło</label>
+            <input type="password" placeholder="Wpisz hasło" name="password" id="password" required>
+
+            <label for="password-repeat">Powtórz hasło</label>
+            <input type="password" placeholder="Wpisz ponownie hasło" name="password-repeat" id="password-repeat" required>
+            <br /><hr><br />
+            
+            <p>Poprzez tworzenie konta zgadzasz się na <a href="{% url 'terms' %}">Politykę prywatności</a> firmy</p>
+            <button type="submit" class="register-button">Zarejestruj się</button>
+        </div>
+
+        <div class="login-container">
+            <p>Masz już konto? <a href="{% url 'login' %}">Zaloguj się</a></p>
+        </div>
+    </form>
 {% endblock content %}

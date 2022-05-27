@@ -4,5 +4,18 @@
     <link rel="stylesheet" href="{% static 'css/login.css' %}">
 {% endblock css %}
 {% block content %}
-	<h1>Login</h1>
+    <form class="login">
+        <div class="login-container">
+            <h1>Zaloguj się</h1>
+            <hr>
+            <label for="email">Email</label>
+            <input type="text" placeholder="Podaj email" name="email" id="email" required>
+
+            <label for="password">Hasło</label>
+            <input type="password" placeholder="Wpisz hasło" name="password" id="password" required>
+            <br /><hr><br />
+            
+            <button type="submit" class="login-button">Zaloguj się</button>
+        </div>
+    </form>
 {% endblock content %}
