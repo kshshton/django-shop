@@ -1,5 +1,49 @@
 {% extends 'shop/index.html' %}
 {% load static %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/cart.css' %}">
+{% endblock css %}
 {% block content %}
-	<h1>Cart</h1>
+<section class="cart">
+	<section class="cart-list">
+		<h1>Koszyk</h1>
+		<div class="column">
+			<div class="cart-item" id="item">
+				<img class="cart-img" src="{% static 'img/1.png' %}">
+				<p class="desc-item">Koszula</p>
+				<p class="desc-item">59.99 zł</p>
+				<input type="number" name="quantity" id="no-of-items"
+				value="1" min="1" max="5" step="1">
+				<button id="remove" class="remove">
+					<i class="fas fa-trash fa-2x"></i>
+				</button>
+			</div>
+		</div>
+		<div class="column">
+			<div class="cart-item" id="item">
+				<img class="cart-img" src="{% static 'img/2.png' %}">
+				<p class="desc-item">Koszula</p>
+				<p class="desc-item">74.99 zł</p>
+				<input type="number" name="quantity" id="no-of-items"
+				value="1" min="1" max="5" step="1">
+				<button id="remove" class="remove">
+					<i class="fas fa-trash fa-2x"></i>
+				</button>
+			</div>
+		</div>
+	</section>
+
+<!---------------------------------------------------------------------------------------------------------------------------------------------------->
+	<section class="cart-checkout">
+		<h1>Do zapłaty</h1>
+		<div class="row">
+			<p>Wartość produktów</p>
+			<p>Przesyłka</p>
+			<hr>
+			<strong>Suma: XXX</strong><br/>
+			<button>Zapłać</button>
+		</div>
+	</section>
+<!---------------------------------------------------------------------------------------------------------------------------------------------------->
+</section>
 {% endblock content %}

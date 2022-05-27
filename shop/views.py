@@ -16,11 +16,6 @@ def cart(request):
     return render(request, 'shop/cart.html', context)
 
 
-def checkout(request):
-    context = {}
-    return render(request, 'shop/checkout.html', context)
-
-
 def login(request):
     context = {}
     return render(request, 'shop/login.html', context)
@@ -29,3 +24,8 @@ def login(request):
 def register(request):
     context = {}
     return render(request, 'shop/register.html', context)
+
+
+def single(request):
+    context = {}
+    return render(request, 'shop/single-id.html', context)
