@@ -3,13 +3,13 @@
 }
 
 .cart-list {
-  margin-top: 130px;
-  margin-left: 60px;
+  margin-top: 7%;
+  margin-left: 8%;
 }
 
 .cart-checkout {
-  margin-top: 130px;
-  margin-left: 60px;
+  margin-top: 7%;
+  margin-left: 18%;
 }
 
 .cart-list input {
@@ -48,4 +48,8 @@
 
 .cart-list .remove:hover {
     color: #CB4335;
+}
+
+.cart-h1 {
+  font-size: 1.5em;
 }
