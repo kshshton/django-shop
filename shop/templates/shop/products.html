@@ -5,43 +5,14 @@
 {% endblock css %}
 {% block content %}
 	<section class="products-container">
+		{% for item in items %}
 		<div class="product">
-			<img src="{% static 'img/1.png' %}"/>
-			<h1>Koszula</h1>
-			<p>Rozmiar: M</p>
-			<a href="">Dodaj do koszyka</a>
+			<img src="{{ item.imageURL }}"/>
+			<h1>{{ item.name }}</h1>
+			<p>Cena: {{ item.price | floatformat:2 }} zł</p>
+			<p>Rozmiar: {{ item.size }}</p>
 			<a href="{% url 'single' %}">Zobacz więcej</a>
 		</div>
-		<div class="product">
-			<img src="{% static 'img/2.png' %}"/>
-			<h1>Koszula</h1>
-			<p>Rozmiar: M</p>
-			<a href="">Dodaj do koszyka</a>
-			<a href="{% url 'single' %}">Zobacz więcej</a>
-		</div>
-		<div class="product">
-			<img src="{% static 'img/2.png' %}"/>
-			<h1>Koszula</h1>
-			<p>Rozmiar: M</p>
-			<a href="{% url 'single' %}">Zobacz więcej</a>
-		</div>
-		<div class="product">
-			<img src="{% static 'img/1.png' %}"/>
-			<h1>Koszula</h1>
-			<p>Rozmiar: M</p>
-			<a href="{% url 'single' %}">Zobacz więcej</a>
-		</div>
-		<div class="product">
-			<img src="{% static 'img/1.png' %}"/>
-			<h1>Koszula</h1>
-			<p>Rozmiar: M</p>
-			<a href="{% url 'single' %}">Zobacz więcej</a>
-		</div>
-		<div class="product">
-			<img src="{% static 'img/2.png' %}"/>
-			<h1>Koszula</h1>
-			<p>Rozmiar: M</p>
-			<a href="{% url 'single' %}">Zobacz więcej</a>
-		</div>
+		{% endfor %}
 	</section>
 {% endblock content %}
