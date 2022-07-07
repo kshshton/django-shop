@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.http import JsonResponse
 from .models import *
 
 
@@ -44,3 +45,6 @@ def single(request):
 def terms(request):
     context = {}
     return render(request, 'shop/terms.txt', context)
+
+def updateItem(request):
+    return JsonResponse('Item added', safe=False)
