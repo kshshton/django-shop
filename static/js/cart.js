@@ -9,7 +9,30 @@ for (let i = 0; i < addButtons.length; i++) {
         if (user === 'AnonymousUser') {
             console.log('Not logged');
         } else {
-            console.log('Adding item to ' + user + '\'s cart')
+            updateUserOrder(itemId, action);
         }
     });
+}
+
+function updateUserOrder(itemId, action) {
+    console.log('User is logged in, sending data...')
+
+    const url = '/update_item/'
+
+    fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-type': 'application/json',
+            'X-CSRFToken': csrftoken,
+        },
+        body:JSON.stringify({'itemId': itemId, 'action': action})
+    })
+
+    .then((response) => {
+        return response.json()
+    })
+
+    .then((data) => {
+        console.log('data: ', data)
+    })
 }

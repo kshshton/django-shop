@@ -1,5 +1,7 @@
 from django.shortcuts import render
 from django.http import JsonResponse
+import json
+
 from .models import *
 
 
@@ -46,5 +48,16 @@ def terms(request):
     context = {}
     return render(request, 'shop/terms.txt', context)
 
-def updateItem(request):
+
+def update_item(request):
+    data = json.loads(request.body)
+    itemId = data['itemId']
+    action = data['action']
+
+    print('Action: ', action)
+    print('itemId: ', itemId)
+
+    customer = request.user.customer
+    product = Product.objects.get(id=itemId)
+    order, created = Order.objects.get_or_create(cu)
     return JsonResponse('Item added', safe=False)
