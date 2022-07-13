@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from django.http import JsonResponse
-import json
-
 from .models import *
+from .utils import cookieCart, cartData, guestOrder
+import json
 
 
 def home(request):
@@ -11,23 +11,24 @@ def home(request):
 
 
 def products(request):
-    items = Product.objects.all()
-    context = { 'items': items }
+    data = cartData(request)
+    cartItems = data['cartItems']
+    order = data['order']
+    items = data['items']
+
+    productObjects = Product.objects.all()
+    context = {'productObjects': productObjects, 'cartItems': cartItems}
     return render(request, 'shop/products.html', context)
 
-
 def cart(request):
-    if request.user.is_authenticated:
-        customer = request.user.customer
-        order, created = Order.objects.get_or_create(customer=customer, complete=False)
-        items = order.orderitem_set.all()
-    else:
-        items = []
-        order = {'get_cart_total': 0, 'get_cart_items': 0}
+    data = cartData(request)
 
-    context = {'items': items, 'order': order}
+    cartItems = data['cartItems']
+    order = data['order']
+    items = data['items']
+
+    context = {'items': items, 'order': order, 'cartItems': cartItems}
     return render(request, 'shop/cart.html', context)
-
 
 def login(request):
     context = {}
@@ -51,13 +52,26 @@ def terms(request):
 
 def update_item(request):
     data = json.loads(request.body)
-    itemId = data['itemId']
+    productObjectId = data['productObjectId']
     action = data['action']
 
     print('Action: ', action)
-    print('itemId: ', itemId)
+    print('ProductObjectId: ', productObjectId)
 
     customer = request.user.customer
-    product = Product.objects.get(id=itemId)
-    order, created = Order.objects.get_or_create(cu)
+    productObject = Product.objects.get(id=productObjectId)
+    order, created = Order.objects.get_or_create(customer=customer, complete=False)
+
+    orderItem, created = OrderItem.objects.get_or_create(order=order, productObject=productObject)
+
+    if action == "add":
+        orderItem.quantity = (orderItem.quantity + 1)
+    elif action == 'remove':
+        orderItem.quantity = (orderItem.quantity - 1)
+
+    orderItem.save()
+
+    if orderItem.quantity <= 0:
+        orderItem.delete()
+
     return JsonResponse('Item added', safe=False)
