@@ -16,8 +16,8 @@ def products(request):
     order = data['order']
     items = data['items']
 
-    productObjects = Product.objects.all()
-    context = {'productObjects': productObjects, 'cartItems': cartItems}
+    products = Product.objects.all()
+    context = {'products': products, 'cartItems': cartItems}
     return render(request, 'shop/products.html', context)
 
 def cart(request):
@@ -52,17 +52,17 @@ def terms(request):
 
 def update_item(request):
     data = json.loads(request.body)
-    productObjectId = data['productObjectId']
+    productId = data['productId']
     action = data['action']
 
     print('Action: ', action)
-    print('ProductObjectId: ', productObjectId)
+    print('productId: ', productId)
 
     customer = request.user.customer
-    productObject = Product.objects.get(id=productObjectId)
+    product = Product.objects.get(id=productId)
     order, created = Order.objects.get_or_create(customer=customer, complete=False)
 
-    orderItem, created = OrderItem.objects.get_or_create(order=order, productObject=productObject)
+    orderItem, created = OrderItem.objects.get_or_create(order=order, product=product)
 
     if action == "add":
         orderItem.quantity = (orderItem.quantity + 1)

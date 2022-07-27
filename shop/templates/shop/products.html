@@ -5,13 +5,13 @@
 {% endblock css %}
 {% block content %}
 	<section class="products-container">
-		{% for object in productObjects %}
+		{% for product in products %}
 		<div class="product">
-			<img src="{{ object.imageURL }}"/>
-			<h1>{{ object.name }}</h1>
-			<p>Cena: {{ object.price | floatformat:2 }} zł</p>
-			<p>Rozmiar: {{ object.size }}</p>
-			<button data-object={{object.id}} data-action="add" class="add-button">Dodaj do koszyka</button>
+			<img src="{{ product.imageURL }}"/>
+			<h1>{{ product.name }}</h1>
+			<p>Cena: {{ product.price | floatformat:2 }} zł</p>
+			<p>Rozmiar: {{ product.size }}</p>
+			<button data-product={{product.id}} data-action="add" class="add-button">Dodaj do koszyka</button>
 			<a href="{% url 'single' %}">Zobacz więcej</a>
 		</div>
 		{% endfor %}

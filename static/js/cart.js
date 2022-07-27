@@ -2,19 +2,19 @@ var addButtons = document.getElementsByClassName('add-button');
 
 for (var i = 0; i < addButtons.length; i++) {
     addButtons[i].addEventListener('click', function() {
-        var productObjectId = this.dataset.object;
+        var productId = this.dataset.product;
         var action = this.dataset.action;
-        console.log('productObjectId: ', productObjectId, 'action: ', action);
+        console.log('productId: ', productId, 'action: ', action);
 
         if (user === 'AnonymousUser') {
-            addCookieItem(productObjectId, action)
+            addCookieItem(productId, action)
         } else {
-            updateUserOrder(productObjectId, action);
+            updateUserOrder(productId, action);
         }
     });
 }
 
-function updateUserOrder(productObjectId, action) {
+function updateUserOrder(productId, action) {
     console.log('User is logged in, sending data...')
 
     var url = '/update_item/'
@@ -25,7 +25,7 @@ function updateUserOrder(productObjectId, action) {
             'Content-type': 'application/json',
             'X-CSRFToken': csrftoken,
         },
-        body:JSON.stringify({'productObjectId': productObjectId, 'action': action})
+        body:JSON.stringify({'productId': productId, 'action': action})
     })
 
     .then((response) => {
@@ -37,24 +37,24 @@ function updateUserOrder(productObjectId, action) {
     });
 }
 
-function addCookieItem(productObjectId, action){
+function addCookieItem(productId, action){
 	console.log('User is not authenticated')
 
 	if (action == 'add'){
-		if (cart[productObjectId] == undefined){
-		cart[productObjectId] = {'quantity':1}
+		if (cart[productId] == undefined){
+		cart[productId] = {'quantity':1}
 
 		}else{
-			cart[productObjectId]['quantity'] += 1
+			cart[productId]['quantity'] += 1
 		}
 	}
 
 	if (action == 'remove'){
-		cart[productObjectId]['quantity'] -= 1
+		cart[productId]['quantity'] -= 1
 
-		if (cart[productObjectId]['quantity'] <= 0){
+		if (cart[productId]['quantity'] <= 0){
 			console.log('Item should be deleted')
-			delete cart[productObjectId];
+			delete cart[productId];
 		}
 	}
 	console.log('CART:', cart)
