@@ -1,10 +1,11 @@
-var addButtons = document.getElementsByClassName('add-button');
+var addButtons = document.getElementsByClassName('update-button');
 
 for (var i = 0; i < addButtons.length; i++) {
     addButtons[i].addEventListener('click', function() {
         var productId = this.dataset.product;
         var action = this.dataset.action;
         console.log('productId: ', productId, 'action: ', action);
+        console.log('User: ', user)
 
         if (user === 'AnonymousUser') {
             addCookieItem(productId, action)

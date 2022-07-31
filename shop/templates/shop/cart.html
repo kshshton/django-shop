@@ -13,6 +13,10 @@
 				<img class="cart-img" src="{{item.product.imageURL}}">
 				<p class="desc-item">{{item.product.name}}</p>
 				<p class="desc-item">{{item.product.price}}</p>
+
+				<button class="update-button" data-action="remove" data-product="{{item.product.id}}"><</button>
+				<p class="desc-item">{{item.quantity}}</p>
+				<button class="update-button" data-action="add" data-product="{{item.product.id}}">></button>
 			</div>
 		</div>
 		{% endfor %}

@@ -11,10 +11,9 @@
 			<h1>{{ product.name }}</h1>
 			<p>Cena: {{ product.price | floatformat:2 }} zł</p>
 			<p>Rozmiar: {{ product.size }}</p>
-			<button data-product={{product.id}} data-action="add" class="add-button">Dodaj do koszyka</button>
+			<button data-product={{product.id}} data-action="add" class="update-button">Dodaj do koszyka</button>
 			<a href="{% url 'single' %}">Zobacz więcej</a>
 		</div>
 		{% endfor %}
 	</section>
 {% endblock content %}
-
