@@ -4,8 +4,10 @@
     <link rel="stylesheet" href="{% static 'css/register.css' %}">
 {% endblock css %}
 {% block content %}
-    <form class="register">
-        <div class="register-container">
+    <form class="register" method="POST" action="">
+        {% csrf_token %}
+        {{form.as_p}}
+        {% comment %} <div class="register-container">
             <h1>Zarejestruj się</h1>
             <hr>
             <label for="email">Email</label>
@@ -19,9 +21,9 @@
             <br /><hr><br />
             
             <p>Poprzez tworzenie konta zgadzasz się na <a href="{% url 'terms' %}">Politykę prywatności</a> firmy</p>
+            {% endcomment %}
             <button type="submit" class="register-button">Zarejestruj się</button>
-        </div>
-
+        </div> 
         <div class="login-container">
             <p>Masz już konto? <a href="{% url 'login' %}">Zaloguj się</a></p>
         </div>

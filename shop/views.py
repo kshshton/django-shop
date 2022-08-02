@@ -1,7 +1,9 @@
 from django.shortcuts import render
 from django.http import JsonResponse
+from django.contrib.auth.forms import UserCreationForm
 from .models import *
 from .utils import cookieCart, cartData, guestOrder
+from .forms import CreateUserForm
 import json
 
 
@@ -36,7 +38,14 @@ def login(request):
 
 
 def register(request):
-    context = {}
+    form = CreateUserForm()
+    
+    if request.method == "POST":
+        form = CreateUserForm(request.POST)
+        if form.is_valid():
+            form.save()
+
+    context = {'form': form}
     return render(request, 'shop/register.html', context)
 
 
