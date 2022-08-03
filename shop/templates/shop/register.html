@@ -6,26 +6,41 @@
 {% block content %}
     <form class="register" method="POST" action="">
         {% csrf_token %}
-        {{form.as_p}}
-        {% comment %} <div class="register-container">
+        <div class="register-container">
             <h1>Zarejestruj się</h1>
             <hr>
-            <label for="email">Email</label>
-            <input type="text" placeholder="Podaj email" name="email" id="email" required>
-
-            <label for="password">Hasło</label>
-            <input type="password" placeholder="Wpisz hasło" name="password" id="password" required>
-
-            <label for="password-repeat">Powtórz hasło</label>
-            <input type="password" placeholder="Wpisz ponownie hasło" name="password-repeat" id="password-repeat" required>
+            <label for="email">Email*</label><br />
+            {{form.email}}<br /><br /><br />
+            <label for="username">Nazwa użytkownika*</label><br />
+            {{form.username}}<br /><br />
+            <label for="first_name">Imię (opcjonalnie)</label><br />
+            {{form.first_name}}<br /><br />
+            <label for="last_name">Nazwisko (opcjonalnie)</label><br />
+            {{form.last_name}}<br /><br />
+            <label for="password">Hasło*</label><br />
+            {{form.password1}}<br /><br />
+            <label for="password-repeat">Powtórz hasło*</label><br />
+            {{form.password2}}<br /><br />
+            {{form.errors}}
             <br /><hr><br />
-            
             <p>Poprzez tworzenie konta zgadzasz się na <a href="{% url 'terms' %}">Politykę prywatności</a> firmy</p>
-            {% endcomment %}
             <button type="submit" class="register-button">Zarejestruj się</button>
         </div> 
         <div class="login-container">
             <p>Masz już konto? <a href="{% url 'login' %}">Zaloguj się</a></p>
         </div>
     </form>
+    <script>
+        var fields = document.getElementsByTagName('input')
+        fields[1].placeholder = 'Wpisz adres mail..';
+        fields[2].placeholder = 'Wpisz nazwę użytkownika..';
+        fields[3].placeholder = 'Wpisz imię..';
+        fields[4].placeholder = 'Wpisz nazwisko..';
+        fields[5].placeholder = 'Wpisz hasło..';
+        fields[6].placeholder = 'Wpisz jeszcze raz hasło..';
+
+        for (var i in fields) {
+            fields[i].for += i
+        }
+    </script>
 {% endblock content %}
