@@ -5,11 +5,12 @@
 {% endblock css %}
 {% block content %}
     <form class="login">
+        {% csrf_token %}
         <div class="login-container">
             <h1>Zaloguj się</h1>
             <hr>
-            <label for="email">Email</label>
-            <input type="text" placeholder="Podaj email" name="email" id="email" required>
+            <label for="username">Login</label>
+            <input type="text" placeholder="Podaj nazwę użytkownika" name="username" id="username" required>
 
             <label for="password">Hasło</label>
             <input type="password" placeholder="Wpisz hasło" name="password" id="password" required>
