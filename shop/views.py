@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 from .models import *
 from .utils import cookieCart, cartData, guestOrder
 from .forms import CreateUserForm
@@ -25,6 +26,7 @@ def products(request):
     return render(request, 'shop/products.html', context)
 
 
+@login_required(login_url='login')
 def cart(request):
     data = cartData(request)
 
@@ -36,23 +38,27 @@ def cart(request):
     return render(request, 'shop/cart.html', context)
 
 
-def login(request):
-    if request.method == 'POST':
-        username = request.POST.get('username')
-        password = request.POST.get('password')
-        user = authenticate(request, username=username, password=password)
+def loginPage(request):
+    if request.user.is_authenticated:
+        return redirect('home')
+    else:
+        if request.method == 'POST':
+            username = request.POST.get('username')
+            password = request.POST.get('password')
+            user = authenticate(request, username=username, password=password)
 
-        if user is not None:
-            login(request, user)
-            return redirect('home')
-        else:
-            messages.info(request, 'Incorrect data')
+            if user is not None:
+                login(request, user)
+                return redirect('home')
+            else:
+                messages.info(request, 'Incorrect data')
 
-    context = {}
-    return render(request, 'shop/login.html', context)
+        context = {}
+        return render(request, 'shop/login.html', context)
 
 
-def logout(request):
+@login_required(login_url='login')
+def logoutUser(request):
     logout(request)
     return redirect('login')
 
@@ -81,6 +87,7 @@ def terms(request):
     return render(request, 'shop/terms.txt', context)
 
 
+@login_required(login_url='login')
 def update_item(request):
     data = json.loads(request.body)
     productId = data['productId']
@@ -106,3 +113,11 @@ def update_item(request):
         orderItem.delete()
 
     return JsonResponse('Item added', safe=False)
+
+
+def userPage(request):
+    orders = request.user.customer.order_set.all()
+    print('Orders:', orders)
+
+    context = {'orders': orders}
+    return render(request, 'shop/user.html', context)

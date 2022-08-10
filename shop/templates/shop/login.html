@@ -4,7 +4,7 @@
     <link rel="stylesheet" href="{% static 'css/login.css' %}">
 {% endblock css %}
 {% block content %}
-    <form class="login">
+    <form class="login" method="POST">
         {% csrf_token %}
         <div class="login-container">
             <h1>Zaloguj się</h1>
@@ -15,8 +15,14 @@
             <label for="password">Hasło</label>
             <input type="password" placeholder="Wpisz hasło" name="password" id="password" required>
             <br /><hr><br />
-
+            {% comment %} todo {% endcomment %}
+            {% for message in messages %}
+            <p>{{message}}</p>
+            {% endfor %}
             <button type="submit" class="login-button">Zaloguj się</button>
         </div>
     </form>
+    <div class="login-container">
+        <p>Masz już konto? <a href="{% url 'register' %}">Zarejestruj się</a></p>
+    </div>
 {% endblock content %}
