@@ -7,12 +7,11 @@
 	<section class="products-container">
 		{% for product in products %}
 		<div class="product">
-			<img src="{{ product.imageURL }}"/>
+            <a data-product="{{ product.id }}" href="{% url 'single' product.id %}"><img src="{{ product.imageURL }}"/></a>
 			<h1>{{ product.name }}</h1>
 			<p>Cena: {{ product.price | floatformat:2 }} zł</p>
 			<p>Rozmiar: {{ product.size }}</p>
 			<button data-product={{product.id}} data-action="add" class="update-button">Dodaj do koszyka</button>
-			<a href="{% url 'single' %}">Zobacz więcej</a>
 		</div>
 		{% endfor %}
 	</section>

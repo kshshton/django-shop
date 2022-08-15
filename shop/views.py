@@ -78,12 +78,11 @@ def register(request):
     return render(request, 'shop/register.html', context)
 
 
-def single(request):
-    data = json.loads(request.body)
-    productId = data['productId']
-    product = Product.objects.get(id=productId)
+def single(request, id):
+    product = Product.objects.get(id=id)
+
     context = {'product': product}
-    return render(request, 'shop/single.html', context)
+    return render(request, 'shop/products.html', context)
 
 
 def terms(request):
@@ -125,4 +124,3 @@ def userPage(request):
     context = {'customer': customer}
 
     return render(request, 'shop/user.html', context)
-
