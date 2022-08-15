@@ -1,9 +1,9 @@
-var addButtons = document.getElementsByClassName('update-button');
+const addButtons = document.getElementsByClassName('update-button');
 
-for (var i = 0; i < addButtons.length; i++) {
+for (let i = 0; i < addButtons.length; i++) {
     addButtons[i].addEventListener('click', function() {
-        var productId = this.dataset.product;
-        var action = this.dataset.action;
+        let productId = this.dataset.product;
+        let action = this.dataset.action;
         console.log('productId: ', productId, 'action: ', action);
         console.log('User: ', user)
 
@@ -18,7 +18,7 @@ for (var i = 0; i < addButtons.length; i++) {
 function updateUserOrder(productId, action) {
     console.log('User is logged in, sending data...')
 
-    var url = '/update_item/'
+    const url = '/update_item/'
 
     fetch(url, {
         method: 'POST',

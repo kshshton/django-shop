@@ -31,7 +31,7 @@
         </div>
     </form>
     <script>
-        var fields = document.getElementsByTagName('input')
+        const fields = document.getElementsByTagName('input')
         fields[1].placeholder = 'Wpisz adres mail..';
         fields[2].placeholder = 'Wpisz nazwę użytkownika..';
         fields[3].placeholder = 'Wpisz imię..';
@@ -39,7 +39,7 @@
         fields[5].placeholder = 'Wpisz hasło..';
         fields[6].placeholder = 'Wpisz jeszcze raz hasło..';
 
-        for (var i in fields) {
+        for (let i in fields) {
             fields[i].for += i
         }
     </script>

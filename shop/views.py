@@ -82,7 +82,7 @@ def single(request, id):
     product = Product.objects.get(id=id)
 
     context = {'product': product}
-    return render(request, 'shop/products.html', context)
+    return render(request, 'shop/single.html', context)
 
 
 def terms(request):

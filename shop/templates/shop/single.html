@@ -1,10 +1,13 @@
 {% extends 'shop/index.html' %}
 {% load static %}
 {% block css %}
-    <link rel="stylesheet" href="{% static 'css/single.css' %}">
+    <link rel="stylesheet" href="{% static 'css/cart.css' %}">
 {% endblock css %}
 {% block content %}
     <section class="single">
+        <h1>*</h1>
+        <h1>*</h1>
+        <img src="{{ product.imageURL }}">
         <h2>{{ product.name }}</h2>
         <h2>{{ product.price }}</h2>
         <h2>{{ product.size }}</h2>
