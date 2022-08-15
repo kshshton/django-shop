@@ -17,6 +17,7 @@ def home(request):
 
 def products(request):
     data = cartData(request)
+
     cartItems = data['cartItems']
     order = data['order']
     items = data['items']
@@ -78,8 +79,11 @@ def register(request):
 
 
 def single(request):
-    context = {}
-    return render(request, 'shop/single-id.html', context)
+    data = json.loads(request.body)
+    productId = data['productId']
+    product = Product.objects.get(id=productId)
+    context = {'product': product}
+    return render(request, 'shop/single.html', context)
 
 
 def terms(request):
@@ -116,8 +120,9 @@ def update_item(request):
 
 
 def userPage(request):
-    orders = request.user.customer.order_set.all()
-    print('Orders:', orders)
+    customer = Customer.objects.all()
 
-    context = {'orders': orders}
+    context = {'customer': customer}
+
     return render(request, 'shop/user.html', context)
+
