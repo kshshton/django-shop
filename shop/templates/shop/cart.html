@@ -30,7 +30,7 @@
 			<hr>
 			<strong>{{order.get_cart_items}}</strong><br/>
 			<strong>Suma: {{order.get_cart_total|floatformat}} zł</strong><br/>
-			<button>Zapłać</button>
+            <a href="{% url 'checkout' %}"><button>Zapłać</button></a>
 		</div>
 	</div>
 </section>

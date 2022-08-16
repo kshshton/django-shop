@@ -1,0 +1,44 @@
+{% extends 'shop/index.html' %}
+{% load static %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/checkout.css' %}">
+{% endblock css %}
+{% block content %}
+    <div class="checkout">
+        <input id="blik" type="text" name="blik" placeholder="Wprowadź kod" value="">
+        <input id="verify" type="submit" value="Zweryfikuj">
+    </div>
+    <script type="text/javascript">
+        let code = blikGenerator();
+        console.log(code);
+
+        document.getElementById('verify').addEventListener('click', (e) => {
+            verifyData();
+        })
+
+        function verifyData() {
+            let blikValue = document.getElementById('blik').value;
+
+            if (blikValue == code) {
+                console.log('Payment has been executed');
+            }
+        }
+
+        function blikGenerator() {
+            let code = "";
+
+            function getRandomInt(min, max) {
+                min = Math.ceil(min);
+                max = Math.floor(max);
+                return Math.floor(Math.random() * (max - min)) + min;
+            }
+
+            for (let i = 0; i < 4; i++) {
+                code += getRandomInt(0, 9)
+            }
+
+            return code;
+        }
+
+    </script>
+{% endblock content %}

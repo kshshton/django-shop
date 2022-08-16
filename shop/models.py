@@ -54,14 +54,6 @@ class Order(models.Model):
         else:
             return total
 
-    @property
-    def get_executed_transaction(self):
-        orderitems = self.orderitem_set.all()
-        total = sum([item.quantity for item in orderitems])
-
-        if self.transaction_id is not None:
-            return total
-
 
 class OrderItem(models.Model):
     product = models.ForeignKey(Product, on_delete=models.SET_NULL, blank=True, null=True)

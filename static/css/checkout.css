@@ -1,0 +1,11 @@
+.checkout {
+    font-family: helvetica;
+    font-size: 1em;
+    box-sizing: border-box;
+    padding: 16px;
+    margin-top: 140px;
+}
+
+#blik {
+    color: red;
+}

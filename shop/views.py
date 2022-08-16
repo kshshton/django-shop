@@ -39,6 +39,17 @@ def cart(request):
     return render(request, 'shop/cart.html', context)
 
 
+@login_required(login_url='login')
+def checkout(request):
+    data = cartData(request)
+
+    cartItems = data['cartItems']
+    order = data['order']
+    items = data['items']
+
+    context = {'items': items, 'order': order, 'cartItems': cartItems}
+    return render(request, 'shop/checkout.html', context)
+
 def loginPage(request):
     if request.user.is_authenticated:
         return redirect('home')
@@ -91,7 +102,7 @@ def terms(request):
 
 
 @login_required(login_url='login')
-def update_item(request):
+def updateItem(request):
     data = json.loads(request.body)
     productId = data['productId']
     action = data['action']
@@ -124,3 +135,7 @@ def userPage(request):
     context = {'customer': customer}
 
     return render(request, 'shop/user.html', context)
+
+
+def executeOrder(request):
+    return JsonResponse('Payment executed', safe=False)
