@@ -9,6 +9,7 @@
         <input id="verify" type="submit" value="Zweryfikuj">
     </div>
     <script type="text/javascript">
+        const url = "/order_execute/"
         let code = blikGenerator();
         console.log(code);
 
@@ -20,7 +21,14 @@
             let blikValue = document.getElementById('blik').value;
 
             if (blikValue == code) {
-                console.log('Payment has been executed');
+                alert('Payment has been executed');
+                fetch(url, {
+                    method:'GET',
+                    headers:{
+                        'Content-Type':'applicaiton/json',
+                        'X-CSRFToken':csrftoken,
+                    }
+                })
             }
         }
 
@@ -39,6 +47,5 @@
 
             return code;
         }
-
     </script>
 {% endblock content %}

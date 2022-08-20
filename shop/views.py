@@ -7,6 +7,7 @@ from django.contrib.auth.decorators import login_required
 from .models import *
 from .utils import cookieCart, cartData, guestOrder
 from .forms import CreateUserForm
+import datetime
 import json
 
 
@@ -138,4 +139,16 @@ def userPage(request):
 
 
 def executeOrder(request):
-    return JsonResponse('Payment executed', safe=False)
+    transaction_id = datetime.datetime.now().timestamp()
+
+    if request.user.is_authenticated:
+        customer = request.user.customer
+        order, created = Order.objects.get_or_create(customer=customer, complete=False)
+        order.complete = True
+        order.transaction_id = transaction_id
+        order.save()
+    else:
+        print('User is not logged in')
+
+    return JsonResponse('Transaction executed!', safe=False)
+    # HttpResponseRedirect('/cart/')
