@@ -9,7 +9,7 @@
         <h1>*</h1>
         <h2>{{ request.user.customer.user }}</h2>
         <h2>{{ request.user.customer.email }}</h2>
-        <h2>{{ request.user.customer.balance }}</h2>
+        <h2>{{ request.user.customer.balance | floatformat:2 }}</h2>
         <hr>
         <h1>Historia</h1>
         {% for transaction in order %}

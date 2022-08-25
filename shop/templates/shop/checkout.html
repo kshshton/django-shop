@@ -4,16 +4,17 @@
     <link rel="stylesheet" href="{% static 'css/checkout.css' %}">
 {% endblock css %}
 {% block content %}
-    <div class="checkout">
+    <form class="checkout" method="POST">
+        {% csrf_token %}
         <input id="blik" type="text" name="blik" placeholder="Wprowadź kod" value="">
         <input id="verify" type="submit" value="Zweryfikuj">
-    </div>
+    </form>
     <script type="text/javascript">
         const url = "/order_execute/"
         let code = blikGenerator();
         console.log(code);
 
-        document.getElementById('verify').addEventListener('click', (e) => {
+        document.getElementById('verify').addEventListener('click', () => {
             verifyData();
         })
 
@@ -25,10 +26,10 @@
                 fetch(url, {
                     method:'GET',
                     headers:{
-                        'Content-Type':'applicaiton/json',
-                        'X-CSRFToken':csrftoken,
+                        'Content-Type': 'applicaiton/json',
+                        'X-CSRFToken': csrftoken,
                     }
-                })
+                }).then(() => location.href = '/products')
             }
         }
 

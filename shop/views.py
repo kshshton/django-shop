@@ -144,11 +144,15 @@ def executeOrder(request):
     if request.user.is_authenticated:
         customer = request.user.customer
         order, created = Order.objects.get_or_create(customer=customer, complete=False)
+
         order.complete = True
         order.transaction_id = transaction_id
         order.save()
+
+        customer.balance -= order.get_cart_total
+        customer.save()
+
     else:
         print('User is not logged in')
 
     return JsonResponse('Transaction executed!', safe=False)
-    # HttpResponseRedirect('/cart/')

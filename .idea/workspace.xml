@@ -2,28 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="52437311-043e-44d1-a12e-32e5ee83baf8" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/4d9fba38-1984-4311-ae9f-bc700f0e369f.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/92ed0a8f-9ea6-4983-ad66-909431b01fe2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/92ed0a8f-9ea6-4983-ad66-909431b01fe2.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_14_08_2022_23_24_[Changes]1/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_14_08_2022_23_24__Changes_1.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/shop/migrations/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/shop/migrations/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/shop/templates/shop/checkout.html" beforeDir="false" afterPath="$PROJECT_DIR$/shop/templates/shop/checkout.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shop/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/shop/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shop/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/shop/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/1_G5BFHxh.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/1_ITzQ9JF.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/1_MQrmx8F.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/1_T6Zy9pA.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/1_U2QoXxW.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/1_m3D9poz.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/1_rZOhf2Y.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/1_rj7s5ro.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/2_Rxdr4oN.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/2_VKFRc3s.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/2_oIoKR7D.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/2_ysmioEs.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/2_zbTUelp.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,17 +35,17 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/owenk/Documents/django-shop",
-    "list.type.of.created.stylesheet": "CSS",
-    "settings.editor.selected.configurable": "com.maddyhome.idea.vim.ui.VimEmulationConfigurable"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/owenk/Documents/django-shop&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.maddyhome.idea.vim.ui.VimEmulationConfigurable&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="django-shop" type="Python.DjangoServer" factoryName="Django server">
       <module name="django-shop" />
@@ -112,7 +96,8 @@
       <workItem from="1660691403176" duration="375000" />
       <workItem from="1660765475045" duration="581000" />
       <workItem from="1660992711241" duration="3344000" />
-      <workItem from="1661001362374" duration="6708000" />
+      <workItem from="1661001362374" duration="6791000" />
+      <workItem from="1661281051026" duration="1084000" />
     </task>
     <servers />
   </component>
