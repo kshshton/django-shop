@@ -2,7 +2,7 @@
 - ##### Dodawanie produktów na stronę
 - ##### Podgląd produktu
 - ##### Autoryzacja użytkownika
-- ##### Konta admin i quest
+- ##### Konta admin i guest
 - ##### Dodawanie produktu do koszyka
 - ##### Mnożenie ilości produktu
 - ##### Rejestracja
@@ -20,7 +20,7 @@
 ### Virtual environment (dependencies)
 >##### Linux, Mac 
 ```bash
-./venv/bin/activate.sh
+source venv/bin/activate
 ```
 >##### Windows
 ```powershell
