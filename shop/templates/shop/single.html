@@ -1,15 +1,17 @@
 {% extends 'shop/index.html' %}
 {% load static %}
 {% block css %}
-    <link rel="stylesheet" href="{% static 'css/cart.css' %}">
+    <link rel="stylesheet" href="{% static 'css/single.css' %}">
 {% endblock css %}
 {% block content %}
     <section class="single">
-        <h1>*</h1>
-        <h1>*</h1>
         <img src="{{ product.imageURL }}">
-        <h2>{{ product.name }}</h2>
-        <h2>{{ product.price }}</h2>
-        <h2>{{ product.size }}</h2>
+        <div class="single-info">
+            <h2>{{ product.name }}</h2>
+            <div class="separator-line"></div>
+            <h2>{{ product.price }}</h2>
+            <h2>{{ product.size }}</h2>
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Iusto quo numquam distinctio iure similique aliquam! Consequatur hic ab culpa consectetur quisquam, aliquam expedita excepturi! Impedit repellendus perferendis, quaerat optio maxime blanditiis atque eaque, odio quis illum suscipit consequatur facilis doloremque aliquam voluptatem? Ex excepturi voluptatem dolorem perferendis sit doloribus quo!</p>
+        </div>
     </section>
 {% endblock content %}

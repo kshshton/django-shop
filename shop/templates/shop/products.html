@@ -9,9 +9,10 @@
 		<div class="product">
             <a data-product="{{ product.id }}" href="{% url 'single' product.id %}"><img src="{{ product.imageURL }}"/></a>
 			<h1>{{ product.name }}</h1>
+			<hr>
 			<p>Cena: {{ product.price | floatformat:2 }} zł</p>
 			<p>Rozmiar: {{ product.size }}</p>
-			<button data-product={{product.id}} data-action="add" class="update-button">Dodaj do koszyka</button>
+			<button class="btn update-button" data-product={{product.id}} data-action="add">Dodaj do koszyka</button>
 		</div>
 		{% endfor %}
 	</section>
