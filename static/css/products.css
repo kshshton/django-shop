@@ -5,6 +5,7 @@
   flex-wrap: wrap;
   justify-content: space-around;
   align-items: center;
+  margin-top: 10vh;
 }
 
 .product {
@@ -17,14 +18,19 @@
   align-items: center;
   flex-direction: column;
 }
+
 .product hr {
-  width: 80%;
-  height: 2px;
-  background: black;
+  height: 3px;
+  width: 60%;
+  background: #80c342;
+  border: none;
+  outline: 0;
 }
+
 .product img {
   width: 20vw;
 }
+
 .btn {
   padding: 4% 8% 4% 8%;
   border: none;
@@ -33,11 +39,13 @@
   transition: .3s;
   border:solid 1px #80C342;
 }
+
 .btn:hover {
   padding: 4% 12% 4% 12%;
   background-color: #80C342;
   color: white;
 }
+
 .add-button {
   color: black;
 }

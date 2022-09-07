@@ -1,9 +1,15 @@
+main {
+  min-height: 120vh;
+  height: 100%;
+}
 .cart {
   display: flex;
+  margin-top: 15vh;
+  justify-content: center;
+  align-items: center;
 }
 
 .cart-list {
-  margin-top: 20vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -15,14 +21,56 @@
   box-shadow: 0px 0px 15px 4px rgba(186, 187, 190, 1);
   padding-right: 20px;
 }
+
 .cart-checkout {
-  margin-top: 7%;
-  margin-left: 18%;
+  box-shadow: 0px 0px 15px 4px rgba(186, 187, 190, 1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 15%;
+  margin-left: 10%;
+  height: 50vh;
 }
+
+.cart-checkout-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.cart-checkout hr {
+  height: 3px;
+  width: 60%;
+  background: #80c342;
+  border: none;
+  outline: 0;
+}
+
+.checkout-btn {
+  padding: 4% 8% 4% 8%;
+  border: none;
+  color: black;
+  cursor: pointer;
+  transition: .3s;
+  border:solid 1px #80C342;
+  width: 60%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.checkout-btn:hover {
+  padding: 4% 12% 4% 12%;
+  background-color: #80C342;
+  color: white;
+}
+
 .btn-2 {
   height: 25px;
   width: 25px;
 }
+
 .cart-list input {
     text-align: center;
     background: rgb(36, 35, 35);

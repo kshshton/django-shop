@@ -24,13 +24,11 @@
 
 	<div class="cart-checkout">
 		<h1 class="cart-h1">Do zapłaty</h1>
-		<div class="row">
-			<p>Wartość produktów</p>
-			<p>Przesyłka</p>
+		<div class="cart-checkout-row">
 			<hr>
-			<strong>{{order.get_cart_items}}</strong><br/>
+			<strong>Ilość zamawiana: {{order.get_cart_items}}</strong><br/>
 			<strong>Suma: {{order.get_cart_total | floatformat:2}} zł</strong><br/>
-            <a href="{% url 'checkout' %}"><button>Zapłać</button></a>
+            <a class="checkout-btn" href="{% url 'checkout' %}">Zapłać<i class="fa-solid fa-credit-card"></i></a>
 		</div>
 	</div>
 </section>

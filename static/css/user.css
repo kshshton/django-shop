@@ -1,0 +1,43 @@
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.user-profile {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    margin-top: 15vh;
+    width: 35%;
+}
+
+.user-profile-helper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.user-profile-helper hr {
+    height: 3px;
+    width: 60%;
+    background: #80c342;
+    border: none;
+    outline: 0;
+}
+
+.separator-line {
+    height: 3px;
+    width: 35%;
+    background: #80c342;
+    border: none;
+    outline: 0;
+}
+
+.user-profile-img {
+    margin-top: 7vh;
+    border-radius: 50%;
+    width: 200px;
+}

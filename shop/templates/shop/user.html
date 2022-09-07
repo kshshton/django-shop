@@ -5,15 +5,14 @@
 {% endblock css %}
 {% block content %}
 	<section class="user-profile">
-        <h1>*</h1>
-        <h1>*</h1>
-        <h2>{{ request.user.customer.user }}</h2>
-        <h2>{{ request.user.customer.email }}</h2>
-        <h2>{{ request.user.customer.balance | floatformat:2 }}</h2>
-        <hr>
+        <div class="user-profile-helper"><i class="fa-solid fa-user fa-2x"></i>  <h2>{{ request.user.customer.user }}</h2></div>
+        <div class="user-profile-helper"><i class="fa-regular fa-envelope fa-2x"></i>  <h2>{{ request.user.customer.email }}</h2></div>
+        <div class="user-profile-helper"><i class="fa-solid fa-sack-dollar fa-2x"></i>  <h2>{{ request.user.customer.balance | floatformat:2 }}</h2></div>
         <h1>Historia</h1>
+        <div class="separator-line"></div>
         {% for transaction in order %}
             <h2>{{ transaction.get_executed_transaction }}</h2>
         {% endfor %}
 	</section>
+    <img class="user-profile-img" src="https://i.picsum.photos/id/567/300/300.jpg?hmac=tncgsBBzbksgVxAhnf2FWR2pRUAzebQ3XQT0dUmrctQ">
 {% endblock content %}
