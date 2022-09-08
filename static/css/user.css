@@ -2,15 +2,23 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
 }
 
 .user-profile {
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    flex-direction: column;
+    flex-direction: row;
     margin-top: 15vh;
-    width: 35%;
+    width: 100%;
+}
+
+.user-profile-content {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start; 
+    flex-direction: column;
 }
 
 .user-profile-helper {
@@ -18,6 +26,18 @@ main {
     flex-direction: row;
     align-items: center;
     justify-content: center;
+}
+
+.user-history-content {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.user-history-content h2 {
+    border-bottom: 1px solid black;
 }
 
 .user-profile-helper hr {
@@ -30,14 +50,14 @@ main {
 
 .separator-line {
     height: 3px;
-    width: 35%;
+    width: 15%;
     background: #80c342;
     border: none;
     outline: 0;
 }
 
 .user-profile-img {
-    margin-top: 7vh;
     border-radius: 50%;
     width: 200px;
+    margin-left: 10%;
 }

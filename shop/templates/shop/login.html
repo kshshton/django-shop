@@ -6,12 +6,12 @@
         {% csrf_token %}
         <div class="login-container">
             <h1>Zaloguj się</h1>
-            <label for="username">Login</label>
+            <label class="username" for="username">Login</label>
             <input type="text" placeholder="Podaj nazwę użytkownika" name="username" id="username" required>
 
-            <label for="password">Hasło</label>
+            <label class="username" for="password">Hasło</label>
             <input type="password" placeholder="Wpisz hasło" name="password" id="password" required>
-            <br /><hr><br />
+            <br />
             {% comment %} todo {% endcomment %}
             {% for message in messages %}
             <p>{{message}}</p>
@@ -20,6 +20,6 @@
         </div>
     </form>
     <div class="login-container">
-        <p>Masz już konto? <a href="{% url 'register' %}">Zarejestruj się</a></p>
+        <p>Nie masz konta? <a href="{% url 'register' %}">Zarejestruj się</a></p>
     </div>
 {% endblock content %}

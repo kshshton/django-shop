@@ -1,9 +1,29 @@
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
 .login {
     font-family: helvetica;
     font-size: 1em;
     box-sizing: border-box;
     padding: 16px;
-    margin-top: 140px;
+    margin-top: 20vh;
+    width: 100%;
+    max-width: 70vh;
+}
+
+.login-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.username {
+  align-self: flex-start;
 }
 
 input[type=text], input[type=password] {
@@ -26,18 +46,22 @@ hr {
 }
 
 .login-button {
-  background-color: #80c342;
-  color: white;
-  padding: 16px 20px;
+  width: 25%;
+  color: #000;
+  padding: 10px 20px;
   margin: 8px 0;
   border: none;
   cursor: pointer;
-  width: 100%;
   opacity: 0.9;
+  transition: .3s;
+  border: 1px solid #80c342;
 }
 
 .login-button:hover {
   opacity:1;
+  background-color: #80c342;
+  color: white;
+  width: 30%;
 }
 
 a {

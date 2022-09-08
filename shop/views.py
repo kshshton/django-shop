@@ -133,11 +133,13 @@ def updateItem(request):
 
 def userPage(request):
     customer = request.user.customer
+    order = Order.objects.all()
     # FINISH HIM
     # order = Order.objects.get_or_create(customer=customer)
+    order = Order.objects.all()
 
-    # context = {'customer': customer, 'order': order}
-    context = {'customer': customer}
+    context = {'customer': customer, 'order': order}
+    # context = {'customer': customer}
 
     return render(request, 'shop/user.html', context)
 
