@@ -2,6 +2,7 @@ main {
   min-height: 120vh;
   height: 100%;
 }
+
 .cart {
   display: flex;
   margin-top: 15vh;
@@ -60,6 +61,7 @@ main {
   justify-content: space-around;
   align-items: center;
 }
+
 .checkout-btn:hover {
   padding: 4% 12% 4% 12%;
   background-color: #80C342;
@@ -93,9 +95,11 @@ main {
     flex-wrap: wrap;
     justify-content: space-between;
 }
+
 .cart-item {
   display: flex;
   align-items: center;
+
 }
 .cart-list .remove {
     background: none;

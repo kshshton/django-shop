@@ -1,3 +1,4 @@
+import re
 from django.shortcuts import render, redirect
 from django.http import JsonResponse, HttpResponse
 from django.contrib.auth.forms import UserCreationForm
@@ -131,8 +132,11 @@ def updateItem(request):
 
 
 def userPage(request):
-    customer = Customer.objects.all()
+    customer = request.user.customer
+    # FINISH HIM
+    # order = Order.objects.get_or_create(customer=customer)
 
+    # context = {'customer': customer, 'order': order}
     context = {'customer': customer}
 
     return render(request, 'shop/user.html', context)
@@ -141,16 +145,22 @@ def userPage(request):
 def executeOrder(request):
     transaction_id = datetime.datetime.now().timestamp()
 
+    def executeTrasaction():
+        if customer.balance - order.get_cart_total <= 0:
+            raise Exception('Niewystarczająca ilość funduszy na koncie...')
+        else:
+            customer.balance -= order.get_cart_total
+
     if request.user.is_authenticated:
         customer = request.user.customer
         order, created = Order.objects.get_or_create(customer=customer, complete=False)
 
+        executeTrasaction()
+        customer.save()
+
         order.complete = True
         order.transaction_id = transaction_id
         order.save()
-
-        customer.balance -= order.get_cart_total
-        customer.save()
 
     else:
         print('User is not logged in')

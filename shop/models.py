@@ -1,3 +1,4 @@
+from pyexpat import model
 from django.db import models
 from django.contrib.auth.models import User
 
@@ -13,9 +14,14 @@ class Customer(models.Model):
 
 
 class Product(models.Model):
+    class SizeEnum(models.TextChoices):
+        S = "S"
+        M = "M"
+        L = "L"
+
     name = models.CharField(max_length=200, null=True)
     price = models.FloatField()
-    size = models.CharField(max_length=200, null=True)
+    size = models.CharField(max_length=2, choices = SizeEnum.choices, default=SizeEnum.M)
     image = models.ImageField(null=True, blank=True)
 
     def __str__(self):
