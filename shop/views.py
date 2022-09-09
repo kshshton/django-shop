@@ -171,7 +171,7 @@ def addFunds(request):
     if request.user.is_authenticated:
         customer = request.user.customer
         customer.balance += float(deposit)
-        print('Funds has been added!', safe=False)
+        print('Funds has been added!')
         customer.save()
     else:
         print('User is not logged in')
