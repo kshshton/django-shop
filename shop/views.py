@@ -1,4 +1,3 @@
-import re
 from django.shortcuts import render, redirect
 from django.http import JsonResponse, HttpResponse
 from django.contrib.auth.forms import UserCreationForm
@@ -6,7 +5,7 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from .models import *
-from .utils import cookieCart, cartData, guestOrder
+from .utils import cookieCart, cartData
 from .forms import CreateUserForm
 import datetime
 import json
@@ -133,13 +132,9 @@ def updateItem(request):
 
 def userPage(request):
     customer = request.user.customer
-    order = Order.objects.all()
-    # FINISH HIM
-    # order = Order.objects.get_or_create(customer=customer)
-    order = Order.objects.all()
+    order = Order.objects.filter(customer=customer)
 
     context = {'customer': customer, 'order': order}
-    # context = {'customer': customer}
 
     return render(request, 'shop/user.html', context)
 
@@ -168,3 +163,18 @@ def executeOrder(request):
         print('User is not logged in')
 
     return JsonResponse('Transaction executed!', safe=False)
+
+
+def addFunds(request):
+    deposit = request.POST.get('deposit')
+
+    if request.user.is_authenticated:
+        customer = request.user.customer
+        customer.balance += float(deposit)
+        print('Funds has been added!', safe=False)
+        customer.save()
+    else:
+        print('User is not logged in')
+
+    
+    return redirect('user')
