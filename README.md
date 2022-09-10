@@ -1,18 +1,19 @@
 # Todo list
+- ##### Autoryzacja użytkowników
 - ##### Dodawanie produktów na stronę
 - ##### Podgląd produktu
-- ##### Autoryzacja użytkownika
-- ##### Konta admin i guest
 - ##### Dodawanie produktu do koszyka
-- ##### Mnożenie ilości produktu
+- ##### Funkcjonalność koszyka
+- ##### Funkcjonalność płatności
 - ##### Rejestracja
 - ##### Logowanie
-- ##### Potwierdzenie płatności
-- ##### Sumowanie ceny koszyka
 - ##### Dodawanie środków na konto
-- ##### Odejmowanie środków przy płatności
+- ##### Generowanie id zamówienia
 - ##### Historia zamówień
 - ##### Panel administratora
+- ##### Przejrzysty szablon strony
+- ##### Opdowiednie relacje SQL
+- ##### Rekordy zapisywane w bazie danych
 
 <br />
 
@@ -24,6 +25,7 @@ source venv/bin/activate
 ```
 >##### Windows
 ```powershell
+set-executionpolicy remotesigned
 .\venv-windows\Scripts\Activate.ps1
 ```
 ### Local server
