@@ -82,9 +82,13 @@ def register(request):
     if request.method == "POST":
         form = CreateUserForm(request.POST)
         if form.is_valid():
-            user = form.cleaned_data.get('username')
-            messages.success(request, f'Account {user} has been created')
-            form.save()
+            username = form.cleaned_data.get('username')
+            email = form.cleaned_data.get('email')
+            messages.success(request, f'Account {username} has been created')
+            user = form.save()
+            Customer.objects.create(user=user, name=username, email=email)
+            return redirect('login')
+
 
     context = {'form': form}
     return render(request, 'shop/register.html', context)
