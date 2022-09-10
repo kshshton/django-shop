@@ -29,9 +29,30 @@ main {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  width: 15%;
+  width: 20%;
+  margin-right: 2%;
   margin-left: 10%;
   height: 50vh;
+  text-align: center;
+  transition: .5s;
+}
+
+@media screen and (max-width: 1100px) {
+  .cart-checkout {
+    width: 30%;
+  }
+  .blik-popup {
+    width: 30% !important;
+  }
+}
+
+@media screen and (max-width: 850px) {
+  .cart-checkout {
+    width: 40%;
+  }
+  .blik-popup {
+    width: 40% !important;
+  }
 }
 
 .cart-checkout-row {
@@ -54,9 +75,9 @@ main {
   border: none;
   color: black;
   cursor: pointer;
-  transition: .3s;
+  transition: .5s;
   border:solid 1px #80C342;
-  width: 60%;
+  width: 105%;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -136,4 +157,108 @@ main {
 .down {
   transform: rotate(45deg);
   -webkit-transform: rotate(45deg);
+}
+.blik-popup {
+    display: flex;
+    position: fixed;
+    transition: .5s;
+    top: 14vh;
+    left: 0; 
+    right: 0; 
+    opacity: 0;
+    z-index: -999;
+    margin-left: auto; 
+    margin-right: auto;
+    background-color: white;
+    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
+    height: 70vh;
+    width: 20%;
+    border-radius: 5%;
+    box-shadow: 0px 0px 20px -5px rgba(66, 68, 90, 1);
+    padding: 3%;
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+}
+
+.blik-popup img {
+    height: 50px;
+    cursor: pointer;
+    align-self: flex-start;
+}
+.close-popup {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  background: transparent;
+  height: 30px;
+  width: 100%;
+  border: none;
+}
+.close-popup-btn {
+  cursor: pointer;
+  border: none;
+  outline: 0;
+  background: transparent;
+}
+.paying-with {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+    align-self: flex-start;
+    line-height: 0px;
+}
+
+.blik-code-value {
+    outline: 0;
+    border: none;
+    background-color: rgb(243, 243, 243);
+    width: 95%;
+    height: 10vh;
+    font-size: 55px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+-moz-apperance: textfield;
+}
+
+.renew-code {
+    color: red;
+    cursor: pointer;
+    margin-top: 15px;
+}
+
+.btn-pay {
+    background-color: rgb(252, 63, 63);
+    padding: 5% 30%;
+    color:white;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 25px;
+    font-weight: bold;
+    transition: .3s;
+    margin-top: 15px;
+}
+
+.btn-pay:hover {
+    background-color: red;
+}
+
+.incomeTicker {
+    font-weight: bold;
+    font-size: 25px;
 }

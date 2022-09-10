@@ -1,24 +1,45 @@
-setTimeout(() => window.location.reload(1), 7000);
-const url = "/order_execute/"
-let code = blikGenerator();
-console.log(code);
+let code;
 
+document.querySelector(".renew-code").addEventListener('click', () => {
+    let code = blikGenerator();
+    console.log(code);
+});
+document.querySelector(".checkout-btn").addEventListener('click', () => {
+    openForm()
+});
 document.getElementById('verify').addEventListener('click', () => {
-    verifyData();
-})
+    verifyData()
+});
+
+function openForm() {
+    code = blikGenerator();
+    console.log(code);
+    let incomeTicker = 60;
+    document.querySelector(".blik-popup").style.opacity = '1';
+    document.querySelector(".blik-popup").style.zIndex = '99';
+
+    window.setInterval(function(){
+        if (incomeTicker > 0)
+            incomeTicker--;
+             document.getElementById("incomeTicker").innerHTML = "0:" + incomeTicker;
+       }, 1000);
+
+    setTimeout(() => window.location.reload(1), 60000);
+}
 
 function verifyData() {
+    const url = "/order_execute/";
     let blikValue = document.getElementById('blik').value;
 
     if (blikValue == code) {
-        alert('Payment has been executed');
+        alert('Request has been executed');
         fetch(url, {
             method:'GET',
             headers:{
                 'Content-Type': 'applicaiton/json',
                 'X-CSRFToken': csrftoken,
             }
-        }).then(() => location.href = '/products')
+        }).then(() => window.location.reload())
     }
 }
 

@@ -49,7 +49,7 @@ def checkout(request):
     items = data['items']
 
     context = {'items': items, 'order': order, 'cartItems': cartItems}
-    return render(request, 'shop/checkout.html', context)
+    return render(request, context)
 
 def loginPage(request):
     if request.user.is_authenticated:

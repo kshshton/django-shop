@@ -13,7 +13,6 @@
 				<img class="cart-img" src="{{item.product.imageURL}}">
 				<p class="desc-item">{{item.product.name}}</p>
 				<p class="desc-item">{{item.product.price}}</p>
-
 				<button class="btn-2 update-button" data-action="remove" data-product="{{item.product.id}}"><</button>
 				<p class="desc-item">{{item.quantity}}</p>
 				<button class="btn-2 update-button" data-action="add" data-product="{{item.product.id}}">></button>
@@ -28,8 +27,30 @@
 			<hr>
 			<strong>Ilość zamawiana: {{order.get_cart_items}}</strong><br/>
 			<strong>Suma: {{order.get_cart_total | floatformat:2}} zł</strong><br/>
-            <a class="checkout-btn" href="{% url 'checkout' %}">Zapłać<i class="fa-solid fa-credit-card"></i></a>
+            <a class="checkout-btn">Przejdź do płatności<i class="fa-solid fa-credit-card"></i></a>
 		</div>
 	</div>
 </section>
+
+	<section class="blik-popup">
+		<form method="POST">
+		{% csrf_token %}
+		<div class="close-popup"><button class="close-popup-btn"><i class="fa-solid fa-x fa-2x"></i></button></div>
+		<div class="paying-with">
+			<p>Płacisz z</p>
+			<h2>BLIK</h2>
+		</div>
+		<p>Wpisz kod <b>BLIK</b> a następnie potwierdź płatność w aplikacji.</p>
+		<span class="incomeTicker" id="incomeTicker" >0:60</span>
+		<input id="blik" type="number" class="blik-code-value">
+		<img src="{% static 'img/blik-ico.png' %}" class="blik-logo">
+		<div class="renew-code">
+			<i class="fa-solid fa-arrows-rotate"></i> Odnów kod<br>
+		</div>
+		<a id="verify" href="" class="btn-pay">Zapłać</a>
+		</form>
+	</section>
 {% endblock content %}
+{% block js %}
+    <script type="text/javascript" src="{% static 'js/blik.js' %}"></script>
+{% endblock js %}
