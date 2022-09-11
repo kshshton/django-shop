@@ -23,10 +23,15 @@
 ```bash
 source venv/bin/activate
 ```
+
 >##### Windows
 ```powershell
 set-executionpolicy remotesigned
 .\venv-windows\Scripts\Activate.ps1
+```
+### Creating admin account
+```bash
+python manage.py createsuperuser
 ```
 ### Local server
 ```bash
