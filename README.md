@@ -27,6 +27,11 @@ source venv/bin/activate
 >##### Windows
 ```powershell
 set-executionpolicy remotesigned
+```
+```python
+python windows_path.py
+```
+```powershell
 .\venv-windows\Scripts\Activate.ps1
 ```
 ### Creating admin account
