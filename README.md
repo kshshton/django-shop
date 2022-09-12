@@ -34,6 +34,7 @@ python windows_path.py
 ```powershell
 .\venv-windows\Scripts\Activate.ps1
 ```
+- ##### If program drops error, the situation requires manual change of the path in (venv-windows/pyvenv.cfg)
 ### Creating admin account
 ```bash
 python manage.py createsuperuser
