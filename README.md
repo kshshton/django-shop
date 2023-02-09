@@ -1,40 +1,44 @@
-# Todo list
-- ##### Autoryzacja użytkowników
-- ##### Dodawanie produktów na stronę
-- ##### Podgląd produktu
-- ##### Dodawanie produktu do koszyka
-- ##### Funkcjonalność koszyka
-- ##### Funkcjonalność płatności
-- ##### Rejestracja
-- ##### Logowanie
-- ##### Dodawanie środków na konto
-- ##### Generowanie id zamówienia
-- ##### Historia zamówień
-- ##### Panel administratora
-- ##### Przejrzysty szablon strony
-- ##### Opdowiednie relacje SQL
-- ##### Rekordy zapisywane w bazie danych
+# Setup
 
-<br />
-
-## Uruchamianie projektu
-### Virtual environment (dependencies)
->##### Linux, Mac 
-```bash
-source venv/bin/activate
+> ### Upgrade pip to the latest version:
+```python
+python -m pip install --user --upgrade pip
 ```
+<br>
 
+> ### Install virtual environment:
+```python
+python -m pip install --user virtualenv
+python -m venv %venv_name% #creates folder in your current directory
+```
+<br>
+
+> ### Activate virtual environment:
+**bash**
+```bash
+source %venv_name%/bin/activate
+```
 >##### Windows
 ```powershell
 set-executionpolicy remotesigned
 ```
 ```python
-python windows_path.py
+python scripts/windows_path.py
 ```
 ```powershell
 .\venv-windows\Scripts\Activate.ps1
 ```
+<br>
+
+> ### Install dependencies:
+```python
+pip install -r requirements.txt
+```
+<br>
+
 - ##### If program drops error, the situation requires manual change of the path in (venv-windows/pyvenv.cfg)
+<br>
+
 ### Creating admin account
 ```bash
 python manage.py createsuperuser

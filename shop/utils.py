@@ -25,9 +25,9 @@ def cookieCart(request):
 				order['get_cart_items'] += cart[i]['quantity']
 
 				item = {
-				'id':product.id,
-				'product':{'id':product.id,'name':product.name, 'price':product.price, 
-				'imageURL':product.imageURL}, 'quantity':cart[i]['quantity'],
+					'id':product.id,
+					'product':{'id':product.id,'name':product.name, 'price':product.price, 
+					'imageURL':product.imageURL}, 'quantity':cart[i]['quantity'],
 				}
 				items.append(item)
 
@@ -41,7 +41,7 @@ def cookieCart(request):
 def cartData(request):
 	if request.user.is_authenticated:
 		customer = request.user.customer
-		order, created = Order.objects.get_or_create(customer=customer, complete=False)
+		order = Order.objects.get_or_create(customer=customer, complete=False)
 		items = order.orderitem_set.all()
 		cartItems = order.get_cart_items
 	else:
