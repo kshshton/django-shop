@@ -1,57 +1,51 @@
 from django.shortcuts import render, redirect
-from django.http import JsonResponse, HttpResponse
-from django.contrib.auth.forms import UserCreationForm
+from django.http import JsonResponse
 from django.contrib import messages
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import authenticate, login, logout 
 from django.contrib.auth.decorators import login_required
 from .models import *
-from .utils import cookieCart, cartData
+from .utils import cart_data
 from .forms import CreateUserForm
 import datetime
 import json
 
 
 def home(request):
-    context = {}
-    return render(request, 'shop/home.html', context)
+    return render(request, 'shop/home.html')
 
 
 def products(request):
-    data = cartData(request)
-
+    data = cart_data(request)
     cartItems = data['cartItems']
-    order = data['order']
-    items = data['items']
-
     products = Product.objects.all()
-    context = {'products': products, 'cartItems': cartItems}
+    context = {
+        'products': products,
+        'cartItems': cartItems,
+        }
     return render(request, 'shop/products.html', context)
 
 
 @login_required(login_url='login')
 def cart(request):
-    data = cartData(request)
-
+    data = cart_data(request)
     cartItems = data['cartItems']
     order = data['order']
     items = data['items']
-
     context = {'items': items, 'order': order, 'cartItems': cartItems}
     return render(request, 'shop/cart.html', context)
 
 
 @login_required(login_url='login')
 def checkout(request):
-    data = cartData(request)
-
+    data = cart_data(request)
     cartItems = data['cartItems']
     order = data['order']
     items = data['items']
-
     context = {'items': items, 'order': order, 'cartItems': cartItems}
     return render(request, context)
 
-def loginPage(request):
+
+def login_page(request):
     if request.user.is_authenticated:
         return redirect('home')
     else:
@@ -59,26 +53,22 @@ def loginPage(request):
             username = request.POST.get('username')
             password = request.POST.get('password')
             user = authenticate(request, username=username, password=password)
-
             if user is not None:
                 login(request, user)
                 return redirect('home')
             else:
                 messages.info(request, 'Incorrect data')
-
-        context = {}
-        return render(request, 'shop/login.html', context)
+        return render(request, 'shop/login.html')
 
 
 @login_required(login_url='login')
-def logoutUser(request):
+def logout_user(request):
     logout(request)
     return redirect('login')
 
 
 def register(request):
     form = CreateUserForm()
-    
     if request.method == "POST":
         form = CreateUserForm(request.POST)
         if form.is_valid():
@@ -88,90 +78,72 @@ def register(request):
             user = form.save()
             Customer.objects.create(user=user, name=username, email=email)
             return redirect('login')
-
-
-    context = {'form': form}
-    return render(request, 'shop/register.html', context)
+    return render(request, 'shop/register.html', context = {'form': form})
 
 
 def single(request, id):
     product = Product.objects.get(id=id)
-
-    context = {'product': product}
-    return render(request, 'shop/single.html', context)
+    return render(request, 'shop/single.html', context = {'product': product})
 
 
 def terms(request):
-    context = {}
-    return render(request, 'shop/terms.txt', context)
+    return render(request, 'shop/terms.txt')
 
 
 @login_required(login_url='login')
-def updateItem(request):
+def update_item(request):
     data = json.loads(request.body)
     productId = data['productId']
     action = data['action']
+    customer = request.user.customer
+    product = Product.objects.get(id=productId)
+    order, created = Order.objects.get_or_create(customer=customer, complete=False)
+    order_item, created = OrderItem.objects.get_or_create(order=order, product=product)
 
     print('Action: ', action)
     print('productId: ', productId)
 
-    customer = request.user.customer
-    product = Product.objects.get(id=productId)
-    order, created = Order.objects.get_or_create(customer=customer, complete=False)
-
-    orderItem, created = OrderItem.objects.get_or_create(order=order, product=product)
-
     if action == "add":
-        orderItem.quantity = (orderItem.quantity + 1)
+        order_item.quantity = (order_item.quantity + 1)
     elif action == 'remove':
-        orderItem.quantity = (orderItem.quantity - 1)
+        order_item.quantity = (order_item.quantity - 1)
 
-    orderItem.save()
-
-    if orderItem.quantity <= 0:
-        orderItem.delete()
-
+    order_item.save()
+    if order_item.quantity <= 0:
+        order_item.delete()
     return JsonResponse('Item added', safe=False)
 
 
-def userPage(request):
+def user_page(request):
     customer = request.user.customer
     order = Order.objects.filter(customer=customer)
+    return render(request, 'shop/user.html', context = {
+        'customer': customer,
+        'order': order,
+    })
 
-    context = {'customer': customer, 'order': order}
 
-    return render(request, 'shop/user.html', context)
-
-
-def executeOrder(request):
+def order_execute(request):
     transaction_id = datetime.datetime.now().timestamp()
-
-    def executeTrasaction():
-        if customer.balance - order.get_cart_total <= 0:
-            raise Exception('Niewystarczająca ilość funduszy na koncie...')
-        else:
-            customer.balance -= order.get_cart_total
 
     if request.user.is_authenticated:
         customer = request.user.customer
         order, created = Order.objects.get_or_create(customer=customer, complete=False)
-
-        executeTrasaction()
+        if customer.balance - order.get_cart_total <= 0:
+            raise Exception('Niewystarczająca ilość funduszy na koncie...')
+        else:
+            customer.balance -= order.get_cart_total
         customer.save()
-
         order.complete = True
         order.transaction_id = transaction_id
         order.save()
-
     else:
         print('User is not logged in')
-
     return JsonResponse('Transaction executed!', safe=False)
 
 
-def addFunds(request):
+def add_funds(request):
     deposit = request.POST.get('deposit')
-
     if request.user.is_authenticated:
         customer = request.user.customer
         if float(deposit) > 0:
@@ -180,6 +152,4 @@ def addFunds(request):
             customer.save()
     else:
         print('User is not logged in')
-
-    
     return redirect('user')

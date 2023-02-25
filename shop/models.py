@@ -1,4 +1,3 @@
-from pyexpat import model
 from django.db import models
 from django.contrib.auth.models import User
 
@@ -20,7 +19,7 @@ class Product(models.Model):
         L = "L"
 
     name = models.CharField(max_length=200, null=True)
-    price = models.FloatField()
+    price = models.DecimalField(max_digits=5, decimal_places=2)
     size = models.CharField(max_length=2, choices = SizeEnum.choices, default=SizeEnum.M)
     image = models.ImageField(null=True, blank=True)
 
@@ -46,14 +45,14 @@ class Order(models.Model):
 
     @property
     def get_cart_total(self):
-        orderitems = self.orderitem_set.all()
-        total = sum([item.get_total for item in orderitems])
+        order_items = self.orderitem_set.all()
+        total = sum([item.get_total for item in order_items])
         return total
 
     @property
     def get_cart_items(self):
-        orderitems = self.orderitem_set.all()
-        total = sum([item.quantity for item in orderitems])
+        order_items = self.orderitem_set.all()
+        total = sum([item.quantity for item in order_items])
 
         if total == 0:
             return "Pusty koszyk"
@@ -69,5 +68,5 @@ class OrderItem(models.Model):
 
     @property
     def get_total(self):
-        total = self.product.price * self.quantity
+        total = float(self.product.price * self.quantity)
         return total

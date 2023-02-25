@@ -1,22 +1,25 @@
 let code;
 
 document.querySelector(".renew-code").addEventListener('click', () => {
-    let code = blikGenerator();
-    console.log(code);
-});
-document.querySelector(".checkout-btn").addEventListener('click', () => {
-    openForm()
-});
-document.getElementById('verify').addEventListener('click', () => {
-    verifyData()
+    console.log(blikGenerator());
 });
 
-function openForm() {
-    code = blikGenerator();
-    console.log(code);
+document.querySelector(".checkout-btn").addEventListener('click', () => {
+    code = openForm();
+});
+
+document.querySelectorAll('#verify').forEach(item => {
+    item.addEventListener('click', () => {
+        verifyData(code);
+    });
+})
+
+const openForm = () => {
+    const code = blikGenerator();
     let incomeTicker = 60;
     document.querySelector(".blik-popup").style.opacity = '1';
     document.querySelector(".blik-popup").style.zIndex = '99';
+    console.log(code);
 
     window.setInterval(function(){
         if (incomeTicker > 0)
@@ -25,9 +28,11 @@ function openForm() {
        }, 1000);
 
     setTimeout(() => window.location.reload(1), 60000);
+
+    return code;
 }
 
-function verifyData() {
+const verifyData = (code) => {
     const url = "/order_execute/";
     let blikValue = document.getElementById('blik').value;
 
@@ -43,10 +48,10 @@ function verifyData() {
     }
 }
 
-function blikGenerator() {
+const blikGenerator = () => {
     let code = "";
 
-    function getRandomInt(min, max) {
+    const getRandomInt = (min, max) => {
         min = Math.ceil(min);
         max = Math.floor(max);
         return Math.floor(Math.random() * (max - min)) + min;

@@ -1,8 +1,7 @@
 import json
 from .models import *
 
-def cookieCart(request):
-
+def cookie_cart(request):
 	try:
 		cart = json.loads(request.COOKIES['cart'])
 	except:
@@ -10,44 +9,46 @@ def cookieCart(request):
 		print('CART:', cart)
 
 	items = []
-	order = {'get_cart_total':0, 'get_cart_items':0}
+	order = {'get_cart_total': 0, 'get_cart_items': 0}
 	cartItems = order['get_cart_items']
 
 	for i in cart:
 		try:	
-			if(cart[i]['quantity']>0):
+			if(cart[i]['quantity'] > 0):
 				cartItems += cart[i]['quantity']
-
 				product = Product.objects.get(id=i)
 				total = (product.price * cart[i]['quantity'])
-
 				order['get_cart_total'] += total
 				order['get_cart_items'] += cart[i]['quantity']
-
 				item = {
 					'id':product.id,
-					'product':{'id':product.id,'name':product.name, 'price':product.price, 
-					'imageURL':product.imageURL}, 'quantity':cart[i]['quantity'],
-				}
+					'product': {
+								'id': product.id,
+								'name': product.name,
+								'price': product.price, 
+								'imageURL': product.imageURL,
+							}, 
+					'quantity': cart[i]['quantity'],
+					}
+
 				items.append(item)
 
 				if product.digital == False:
 					order['shipping'] = True
 		except:
 			pass
-			
 	return {'cartItems':cartItems ,'order':order, 'items':items}
 
-def cartData(request):
+
+def cart_data(request):
 	if request.user.is_authenticated:
 		customer = request.user.customer
-		order = Order.objects.get_or_create(customer=customer, complete=False)
+		order, created = Order.objects.get_or_create(customer=customer, complete=False)
 		items = order.orderitem_set.all()
 		cartItems = order.get_cart_items
 	else:
-		cookieData = cookieCart(request)
-		cartItems = cookieData['cartItems']
-		order = cookieData['order']
-		items = cookieData['items']
-
+		cookie_data = cookie_cart(request)
+		cartItems = cookie_data['cartItems']
+		order = cookie_data['order']
+		items = cookie_data['items']
 	return {'cartItems': cartItems, 'order': order, 'items': items}

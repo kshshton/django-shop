@@ -8,23 +8,23 @@
         <div class="user-profile-content">
             <div class="user-profile-helper"><i class="fa-solid fa-user fa-2x"></i>  <h2>{{ request.user.customer.name }}</h2></div>
             <div class="user-profile-helper"><i class="fa-regular fa-envelope fa-2x"></i>  <h2>{{ request.user.customer.email }}</h2></div>
-            <div class="user-profile-helper"><i class="fa-solid fa-sack-dollar fa-2x"></i>  <h2>{{ request.user.customer.balance | floatformat:2 }}</h2></div>
+            <div class="user-profile-helper"><i class="fa-solid fa-sack-dollar fa-2x"></i>  <h2>{{ request.user.customer.balance | floatformat:2 }} zł</h2></div>
 
             <form action="/add_funds/" method="post" class="add-funds">
                 {% csrf_token %}
                 <input id="deposit" name="deposit" type="number">
                 <input id="deposit-send" type="submit">
             </form>
-
         </div>
-        <img class="user-profile-img" src="https://i.picsum.photos/id/567/300/300.jpg?hmac=tncgsBBzbksgVxAhnf2FWR2pRUAzebQ3XQT0dUmrctQ">
+        <img class="user-profile-img" src="https://fastly.picsum.photos/id/567/300/300.jpg?hmac=tncgsBBzbksgVxAhnf2FWR2pRUAzebQ3XQT0dUmrctQ">
 	</section>
     <div class="user-history-content">
         <h1>Historia</h1>
         <div class="separator-line"></div>
-        {% for i in order %}
-        <h2>{{ i.transaction_id }}</h2>
+        {% for o in order %}
+            {% if o.transaction_id is not None %}
+                <h2>{{ o.transaction_id }}</h2>
+            {% endif %}
         {% endfor %}
-
     </div>
 {% endblock content %}
