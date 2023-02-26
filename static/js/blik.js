@@ -1,27 +1,20 @@
-let code;
-
-document.querySelector(".renew-code").addEventListener('click', () => {
-    console.log(blikGenerator());
-});
-
-document.querySelector(".checkout-btn").addEventListener('click', () => {
-    code = openForm();
-});
-
+document.querySelector(".renew-code").addEventListener('click', () => console.log(blikGenerator()));
+document.querySelector(".checkout-btn").addEventListener('click', () => code = openForm());
 document.querySelectorAll('#verify').forEach(item => {
     item.addEventListener('click', () => {
         verifyData(code);
     });
 })
+let code;
 
-const openForm = () => {
+const openForm = _ => {
     const code = blikGenerator();
     let incomeTicker = 60;
     document.querySelector(".blik-popup").style.opacity = '1';
     document.querySelector(".blik-popup").style.zIndex = '99';
     console.log(code);
 
-    window.setInterval(function(){
+    window.setInterval(() => {
         if (incomeTicker > 0)
             incomeTicker--;
              document.getElementById("incomeTicker").innerHTML = "0:" + incomeTicker;
@@ -32,7 +25,7 @@ const openForm = () => {
     return code;
 }
 
-const verifyData = (code) => {
+const verifyData = code => {
     const url = "/order_execute/";
     let blikValue = document.getElementById('blik').value;
 
@@ -48,7 +41,7 @@ const verifyData = (code) => {
     }
 }
 
-const blikGenerator = () => {
+const blikGenerator = _ => {
     let code = "";
 
     const getRandomInt = (min, max) => {

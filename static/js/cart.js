@@ -2,18 +2,17 @@ const addButtons = document.querySelectorAll('.update-button').forEach(item => {
     item.addEventListener('click', function() {
         let productId = this.dataset.product;
         let action = this.dataset.action;
-        console.log('productId: ', productId, 'action: ', action);
-        console.log('User: ', user)
+        console.log('productId: ', productId, 'action: ', action, 'user: ', user);
         user === 'AnonymousUser' ? addCookieItem(productId, action) : updateUserOrder(productId, action);
     });
 })
 
-const updateUserOrder = (productId, action) => {
-    console.log('User is logged in, sending data...')
-
+const updateUserOrder = async (productId, action) => {
     const url = '/update_item/'
 
-    fetch(url, {
+    console.log('User is logged in, sending data...')
+
+    const response = await fetch(url, {
         method: 'POST',
         headers: {
             'Content-type': 'application/json',
@@ -21,12 +20,11 @@ const updateUserOrder = (productId, action) => {
         },
         body:JSON.stringify({'productId': productId, 'action': action})
     })
-    .then((response) => {
-        return response.json();
+    .then(_ => {
+        location.reload();
     })
-    .then((data) => {
-        location.reload()
-    });
+
+    return response;
 }
 
 const addCookieItem = (productId, action) => {
