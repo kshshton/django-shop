@@ -7,7 +7,7 @@ document.querySelectorAll('#verify').forEach(item => {
 })
 let code;
 
-const openForm = _ => {
+const openForm = () => {
     const code = blikGenerator();
     let incomeTicker = 60;
     document.querySelector(".blik-popup").style.opacity = '1';
@@ -15,10 +15,9 @@ const openForm = _ => {
     console.log(code);
 
     window.setInterval(() => {
-        if (incomeTicker > 0)
-            incomeTicker--;
-             document.getElementById("incomeTicker").innerHTML = "0:" + incomeTicker;
-       }, 1000);
+        incomeTicker > 0 ? incomeTicker-- : "00"
+        document.getElementById("incomeTicker").innerHTML = "0:" + incomeTicker;
+    }, 1000);
 
     setTimeout(() => window.location.reload(1), 60000);
 
@@ -41,7 +40,7 @@ const verifyData = code => {
     }
 }
 
-const blikGenerator = _ => {
+const blikGenerator = () => {
     let code = "";
 
     const getRandomInt = (min, max) => {

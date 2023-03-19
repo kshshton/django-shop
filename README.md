@@ -47,3 +47,7 @@ python manage.py createsuperuser
 ```bash
 python manage.py runserver
 ```
+
+# Example
+<img src="static/assets/ss_1.png">
+<img src="static/assets/ss_2.png">
