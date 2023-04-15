@@ -34,9 +34,7 @@ python scripts/windows_path.py
 ```python
 pip install -r requirements.txt
 ```
-<br>
 
-- ##### If program drops error, the situation requires manual change of the path in (venv-windows/pyvenv.cfg)
 <br>
 
 ### Creating admin account
