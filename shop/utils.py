@@ -1,17 +1,16 @@
 import json
 from .models import *
 
+
 def cookie_cart(request):
 	try:
 		cart = json.loads(request.COOKIES['cart'])
 	except:
 		cart = {}
 		print('CART:', cart)
-
 	items = []
 	order = {'get_cart_total': 0, 'get_cart_items': 0}
 	cartItems = order['get_cart_items']
-
 	for i in cart:
 		try:	
 			if(cart[i]['quantity'] > 0):
@@ -23,16 +22,14 @@ def cookie_cart(request):
 				item = {
 					'id':product.id,
 					'product': {
-								'id': product.id,
-								'name': product.name,
-								'price': product.price, 
-								'imageURL': product.imageURL,
-							}, 
+						'id': product.id,
+						'name': product.name,
+						'price': product.price, 
+						'imageURL': product.imageURL,
+					}, 
 					'quantity': cart[i]['quantity'],
-					}
-
+				}
 				items.append(item)
-
 				if product.digital == False:
 					order['shipping'] = True
 		except:
